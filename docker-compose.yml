@@ -1,0 +1,8 @@
+version: '3'
+services:
+  openwrt:
+    image: gluon
+    ports:
+      - 4443:443
+      - 8080:80
+      - 2222:22
