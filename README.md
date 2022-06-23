@@ -13,13 +13,25 @@ Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
 Failed to send flush request: Operation not permitted
 RTNETLINK answers: Operation not permitted
 ```
+
 Which is normal as the container is not allowed to change kernel settings.
-SSH and Web-Interface still works - but I could not configure the gluon-node properly.
-When saving the settings, it said that it fails to edit `/proc/sys/kernel/hostname: Read-only filesystem`
+SSH and Web-Interface still works. After using the setup wizard the container terminates at the moment.
+This could be caused by the intended reboot after setup.
+
+Applied a workaround here: `/proc/sys/kernel/hostname` replaced with `/tmp/hostname` 
 
 ## instructions
 
-1. execute `build-gluon.sh`
+### docker-compose
+
+1. execute `docker-compose up -d`
+2. `ssh -p 2222 root@localhost`
+3. `uci show`
+4. browser http://localhost:8080/cgi-bin/config/wizard
+
+### manual docker build
+
+1. execute `docker build . -t gluon`
 2. run the docker container `docker run -p 8080:80 -p 2222:22 gluon`
 
 3. `ssh -p 2222 root@localhost`
