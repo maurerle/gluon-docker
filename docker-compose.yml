@@ -6,7 +6,11 @@ services:
       context: .
       args:
         IMAGE_URL: https://firmware.ffmuc.net/next/other/gluon-ffmuc-v2022.5.2-next3-x86-64-rootfs.img.gz
+    #cap_add:
+    #  - NET_ADMIN
     ports:
       - 8080:80
       - 4443:443
       - 2222:22
+    
+    restart: always

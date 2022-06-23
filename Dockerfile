@@ -18,7 +18,7 @@ COPY --from=builder /home/root /
 
 RUN mkdir /var/lock
 
-RUN sed -i 's/\/proc\/sys\/kernel\/hostname/\/tmp\/hostname/g' /usr/lib/lua/pretty_hostname.lua
+RUN sed -i 's,/proc/sys/kernel/hostname,/etc/hostname,g' /usr/lib/lua/pretty_hostname.lua
 
 EXPOSE 80 443 22
 
